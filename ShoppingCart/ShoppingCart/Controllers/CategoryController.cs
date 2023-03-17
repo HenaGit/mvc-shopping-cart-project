@@ -20,5 +20,19 @@ namespace ShoppingCart.Controllers
             IEnumerable<Category> catList = _db.Category;
             return View(catList);
         }
+        //GET -CREATE
+        public IActionResult Create()
+        {
+            return View();
+        }
+        //GET -POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category category)
+        {
+            _db.Category.Add(category);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
