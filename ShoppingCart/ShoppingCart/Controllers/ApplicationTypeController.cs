@@ -34,5 +34,68 @@ namespace ShoppingCart.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        //GET - EDIT
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var applicationType = _db.ApplicationType.Find(id);
+            if (applicationType == null)
+            {
+                return NotFound();
+            }
+
+            return View(applicationType);
+        }
+
+        //POST - EDIT
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ApplicationType applicationType)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ApplicationType.Update(applicationType);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(applicationType);
+
+        }
+
+        //GET - DELETE
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var applicationType = _db.ApplicationType.Find(id);
+            if (applicationType == null)
+            {
+                return NotFound();
+            }
+
+            return View(applicationType);
+        }
+
+        //POST - DELETE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            var applicationType = _db.ApplicationType.Find(id);
+            if (applicationType == null)
+            {
+                return NotFound();
+            }
+            _db.ApplicationType.Remove(applicationType);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+
+
+        }
     }
 }
