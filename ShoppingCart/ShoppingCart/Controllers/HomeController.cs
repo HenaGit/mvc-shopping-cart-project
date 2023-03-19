@@ -36,12 +36,25 @@ namespace ShoppingCart.Controllers
         }
         public IActionResult Details(int id)
         {
+            List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCartModel>>(WC.SessionCart);
+            }
             DetailsVM detailsVM = new DetailsVM()
             {
                 Product = _db.Product.Include(u => u.Category).Include(u => u.ApplicationType)
                 .Where(u => u.Id == id).FirstOrDefault(),
                 ExistsInCart = false
             };
+            foreach (var item in shoppingCartList)
+            {
+                if (item.ProductId == id)
+                {
+                    detailsVM.ExistsInCart = true;
+                }
+            }
             return View(detailsVM);
         }
         [HttpPost, ActionName("Details")]
@@ -57,7 +70,24 @@ namespace ShoppingCart.Controllers
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult RemoveFromCart(int id)
+        {
+            List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCartModel>>(WC.SessionCart);
+            }
 
+            var itemToRemove = shoppingCartList.SingleOrDefault(r => r.ProductId == id);
+            if (itemToRemove != null)
+            {
+                shoppingCartList.Remove(itemToRemove);
+            }
+
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            return RedirectToAction(nameof(Index));
+        }
         public IActionResult Privacy()
         {
             return View();
