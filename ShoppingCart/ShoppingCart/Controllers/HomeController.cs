@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ShoppingCart.Data;
 using ShoppingCart.Models;
 using ShoppingCart.Models.ViewModels;
+using ShoppingCart.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,6 +43,19 @@ namespace ShoppingCart.Controllers
                 ExistsInCart = false
             };
             return View(detailsVM);
+        }
+        [HttpPost, ActionName("Details")]
+        public IActionResult DetailsPost(int id)
+        {
+            List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCartModel>>(WC.SessionCart);
+            }
+            shoppingCartList.Add(new ShoppingCartModel { ProductId = id });
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()
