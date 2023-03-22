@@ -32,5 +32,20 @@ namespace ShoppingCart.Controllers
 
             return View(prodList);
         }
+        public IActionResult Remove(int id)
+        {
+
+            List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart).Count() > 0)
+            {
+                //session exsits
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCartModel>>(WC.SessionCart);
+            }
+
+            shoppingCartList.Remove(shoppingCartList.FirstOrDefault(u => u.ProductId == id));
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
