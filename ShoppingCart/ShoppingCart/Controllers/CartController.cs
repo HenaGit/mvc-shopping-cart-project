@@ -38,6 +38,14 @@ namespace ShoppingCart.Controllers
 
             return View(prodList);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Index")]
+        public IActionResult IndexPost()
+        {
+
+            return RedirectToAction(nameof(Summary));
+        }
         public IActionResult Summary()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
