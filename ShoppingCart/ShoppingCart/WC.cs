@@ -11,5 +11,6 @@ namespace ShoppingCart
         public const string SessionCart = "ShoppingCartSession";
         public const string AdminRole = "Admin";
         public const string CustomerRole = "Customer";
+        public static string EmailAdmin = "henokgebrehiwot@proton.me";
     }
 }
