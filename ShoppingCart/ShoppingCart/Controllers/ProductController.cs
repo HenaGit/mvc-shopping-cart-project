@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -6,11 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using ShoppingCart.Data;
 using ShoppingCart.Models;
 using ShoppingCart.Models.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ShoppingCart.Controllers
 {
@@ -19,16 +19,19 @@ namespace ShoppingCart.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly IWebHostEnvironment _webHostEnvironment;
+
         public ProductController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
         {
             _db = db;
             _webHostEnvironment = webHostEnvironment;
-
         }
+
         public IActionResult Index()
         {
             //IEnumerable<Product> objList = _db.Product;
-            IEnumerable<Product> objList = _db.Product.Include(u => u.Category).Include(u => u.ApplicationType);
+            IEnumerable<Product> objList = _db.Product
+                .Include(u => u.Category)
+                .Include(u => u.ApplicationType);
             //foreach (var obj in objList)
             //{
             //    obj.Category = _db.Category.FirstOrDefault(u => u.Id == obj.CategoryId);
@@ -37,6 +40,7 @@ namespace ShoppingCart.Controllers
 
             return View(objList);
         }
+
         //GET -UPSERT
         public IActionResult Upsert(int? id)
         {
@@ -51,16 +55,12 @@ namespace ShoppingCart.Controllers
             ProductVM productVM = new ProductVM()
             {
                 Product = new Product(),
-                CategorySelectList = _db.Category.Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
-                ApplicationTypeSelectList = _db.ApplicationType.Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                })
+                CategorySelectList = _db.Category.Select(
+                    i => new SelectListItem { Text = i.Name, Value = i.Id.ToString() }
+                ),
+                ApplicationTypeSelectList = _db.ApplicationType.Select(
+                    i => new SelectListItem { Text = i.Name, Value = i.Id.ToString() }
+                )
             };
             if (id == null)
             {
@@ -76,8 +76,8 @@ namespace ShoppingCart.Controllers
                 }
                 return View(productVM);
             }
-            
         }
+
         //GET -UPSERT
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -94,7 +94,12 @@ namespace ShoppingCart.Controllers
                     string fileName = Guid.NewGuid().ToString();
                     string extension = Path.GetExtension(files[0].FileName);
 
-                    using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                    using (
+                        var fileStream = new FileStream(
+                            Path.Combine(upload, fileName + extension),
+                            FileMode.Create
+                        )
+                    )
                     {
                         files[0].CopyTo(fileStream);
                     }
@@ -106,7 +111,9 @@ namespace ShoppingCart.Controllers
                 else
                 {
                     //updating
-                    var objFromDb = _db.Product.AsNoTracking().FirstOrDefault(u => u.Id == productVM.Product.Id);
+                    var objFromDb = _db.Product
+                        .AsNoTracking()
+                        .FirstOrDefault(u => u.Id == productVM.Product.Id);
 
                     if (files.Count > 0)
                     {
@@ -121,7 +128,12 @@ namespace ShoppingCart.Controllers
                             System.IO.File.Delete(oldFile);
                         }
 
-                        using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                        using (
+                            var fileStream = new FileStream(
+                                Path.Combine(upload, fileName + extension),
+                                FileMode.Create
+                            )
+                        )
                         {
                             files[0].CopyTo(fileStream);
                         }
@@ -135,22 +147,18 @@ namespace ShoppingCart.Controllers
                     _db.Product.Update(productVM.Product);
                 }
 
-
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            productVM.CategorySelectList = _db.Category.Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
-            productVM.ApplicationTypeSelectList = _db.ApplicationType.Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
+            productVM.CategorySelectList = _db.Category.Select(
+                i => new SelectListItem { Text = i.Name, Value = i.Id.ToString() }
+            );
+            productVM.ApplicationTypeSelectList = _db.ApplicationType.Select(
+                i => new SelectListItem { Text = i.Name, Value = i.Id.ToString() }
+            );
             return View(productVM);
         }
+
         //GET - DELETE
         public IActionResult Delete(int? id)
         {
@@ -158,7 +166,10 @@ namespace ShoppingCart.Controllers
             {
                 return NotFound();
             }
-            Product product = _db.Product.Include(u => u.Category).Include(u => u.ApplicationType).FirstOrDefault(u => u.Id == id);
+            Product product = _db.Product
+                .Include(u => u.Category)
+                .Include(u => u.ApplicationType)
+                .FirstOrDefault(u => u.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -166,6 +177,7 @@ namespace ShoppingCart.Controllers
 
             return View(product);
         }
+
         //POST - DELETE
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -185,12 +197,9 @@ namespace ShoppingCart.Controllers
                 System.IO.File.Delete(oldFile);
             }
 
-
             _db.Product.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-
         }
-
     }
 }

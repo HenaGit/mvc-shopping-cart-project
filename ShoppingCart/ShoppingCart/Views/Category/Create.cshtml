@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Create";
 }
-
 <form method="post" asp-action="Create">
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -16,7 +15,7 @@
                         <label asp-for="Name"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Name" class="form-control"/>
+                        <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
 
@@ -35,7 +34,7 @@
                     <div class="col-8 offset-4 row">
 
                         <div class="col">
-                            <input type="submit" class="btn btn-info w-100" value="Create"/>
+                            <input type="submit" class="btn btn-info w-100" value="Create" />
                         </div>
                         <div class="col">
                             <a asp-action="Index" class="btn btn-success w-100">Back</a>
@@ -50,8 +49,8 @@
     </div>
 </form>
 
-@section Scripts{
-@{ 
-    <partial name="_ValidationScriptsPartial"/>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }
- }

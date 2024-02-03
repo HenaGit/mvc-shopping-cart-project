@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using ShoppingCart.Data;
-using ShoppingCart.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ShoppingCart.Data;
+using ShoppingCart.Models;
 
 namespace ShoppingCart.Controllers
 {
@@ -13,20 +13,24 @@ namespace ShoppingCart.Controllers
     public class ApplicationTypeController : Controller
     {
         private readonly ApplicationDbContext _db;
+
         public ApplicationTypeController(ApplicationDbContext db)
         {
             _db = db;
         }
+
         public IActionResult Index()
         {
             IEnumerable<ApplicationType> applicationTypeList = _db.ApplicationType;
             return View(applicationTypeList);
         }
+
         //GET -CREATE
         public IActionResult Create()
         {
             return View();
         }
+
         //GET -POST
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -36,6 +40,7 @@ namespace ShoppingCart.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         //GET - EDIT
         public IActionResult Edit(int? id)
         {
@@ -64,7 +69,6 @@ namespace ShoppingCart.Controllers
                 return RedirectToAction("Index");
             }
             return View(applicationType);
-
         }
 
         //GET - DELETE
@@ -96,8 +100,6 @@ namespace ShoppingCart.Controllers
             _db.ApplicationType.Remove(applicationType);
             _db.SaveChanges();
             return RedirectToAction("Index");
-
-
         }
     }
 }

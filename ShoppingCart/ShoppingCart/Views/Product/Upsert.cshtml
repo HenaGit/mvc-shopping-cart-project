@@ -1,12 +1,13 @@
 ﻿@model ShoppingCart.Models.ViewModels.ProductVM
-@{ var title = "Create Product";
+@{
+    var title = "Create Product";
 }
 <form method="post" enctype="multipart/form-data">
     @if (Model.Product.Id != 0)
     {
         title = "Edit Product";
-<input asp-for="Product.Id" hidden />}
-
+        <input asp-for="Product.Id" hidden />
+    }
     <div class="border p-3">
 
         <div class="form-group row">
@@ -70,7 +71,8 @@
                     </div>
                     <div class="col-8">
                         @*<select asp-for="CategoryId" asp-items="@ViewBag.CategoryDropDown" class="form-control">*@
-                        @*<select asp-for="Product.CategoryId" asp-items="@ViewData["CategoryDropDown"] as IEnumerable<SelectListItem>" class="form-control">*@
+                        @*<select asp-for="Product.CategoryId" asp-items="@ViewData["CategoryDropDown"] as
+                        IEnumerable<SelectListItem>" class="form-control">*@
                         <select asp-for="Product.CategoryId" asp-items="@Model.CategorySelectList" class="form-control">
                             <option disabled selected>--Select Category--</option>
                         </select>
@@ -83,7 +85,8 @@
                         <label asp-for="Product.ApplicationTypeId"></label>
                     </div>
                     <div class="col-8">
-                        <select asp-for="Product.ApplicationTypeId" asp-items="@Model.ApplicationTypeSelectList" class="form-control">
+                        <select asp-for="Product.ApplicationTypeId" asp-items="@Model.ApplicationTypeSelectList"
+                            class="form-control">
                             <option disabled selected>--Select Application Type--</option>
                         </select>
                         <span asp-validation-for="Product.ApplicationTypeId" class="text-danger"></span>
@@ -96,14 +99,18 @@
                         <div class="col">
                             @if (Model.Product.Id != 0)
                             {
-                <input type="submit" class="btn btn-info w-100" value="Update" /> }
+                                <input type="submit" class="btn btn-info w-100" value="Update" />
+                            }
                             else
                             {
-                <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Create" />}
+                                <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100"
+                                    value="Create" />
+                            }
 
                         </div>
                         <div class="col">
-                            <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Back</a>
+                            <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i>
+                                Back</a>
                         </div>
                     </div>
                 </div>
@@ -111,7 +118,8 @@
             <div class="col-4">
                 @if (Model.Product.Id != 0)
                 {
-                    <img src="@WC.ImagePath@Model.Product.Image" width="100%" style="border-radius:5px; border:1px solid #bbb" />
+                    <img src="@WC.ImagePath@Model.Product.Image" width="100%"
+                        style="border-radius:5px; border:1px solid #bbb" />
                 }
             </div>
         </div>
@@ -119,10 +127,11 @@
 
 </form>
 
-@section Scripts{
+@section Scripts {
 
     @{
-  <partial name="_ValidationScriptsPartial" /> }
+        <partial name="_ValidationScriptsPartial" />
+    }
     <script>
         $(document).ready(function () {
             $('.summernote').summernote({

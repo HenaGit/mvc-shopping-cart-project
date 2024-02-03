@@ -38,7 +38,8 @@
                                     </div>
                                     <div class="col-9">
                                         <input asp-for="ApplicationUser.PhoneNumber" type="text" class="form-control" />
-                                        <span asp-validation-for="ApplicationUser.PhoneNumber" class="text-danger"></span>
+                                        <span asp-validation-for="ApplicationUser.PhoneNumber"
+                                            class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -65,12 +66,10 @@
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <div>
                                                     <h6 class="my-0">@Model.ProductList[i].Name</h6>
-                                                    <small class="text-muted">Price per Sqft: $@Model.ProductList[i].Price</small>
+                                                    <small class="text-muted">Price per Item:
+                                                        $@Model.ProductList[i].Price</small>
                                                 </div>
                                             </li>
-
-
-
                                         }
                                     </ul>
                                 </div>
@@ -90,8 +89,6 @@
     </div>
 </form>
 
-
-@section Scripts{
+@section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-
