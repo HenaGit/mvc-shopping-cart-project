@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ShoppingCart.Data;
+using ShoppingCart_DataAccess;
 
 [assembly: HostingStartup(typeof(ShoppingCart.Areas.Identity.IdentityHostingStartup))]
 namespace ShoppingCart.Areas.Identity

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ShoppingCart.Data;
+using ShoppingCart_DataAccess;
 using ShoppingCart_Models;
 using ShoppingCart_Models.ViewModels;
 using ShoppingCart_Utility;

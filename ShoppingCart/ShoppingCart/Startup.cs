@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ShoppingCart.Data;
+using ShoppingCart_DataAccess;
 using ShoppingCart_Utility;
 
 namespace ShoppingCart

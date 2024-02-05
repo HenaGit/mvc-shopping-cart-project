@@ -3746,6 +3746,24 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "ShoppingCart_DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.17",
+          "Microsoft.EntityFrameworkCore": "5.0.17",
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.17",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "ShoppingCart_Models": "1.0.0",
+          "ShoppingCart_Utility": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ShoppingCart_DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ShoppingCart_DataAccess.dll": {}
+        }
+      },
       "ShoppingCart_Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -10611,6 +10629,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "ShoppingCart_DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../ShoppingCart_DataAccess/ShoppingCart_DataAccess.csproj",
+      "msbuildProject": "../ShoppingCart_DataAccess/ShoppingCart_DataAccess.csproj"
+    },
     "ShoppingCart_Models/1.0.0": {
       "type": "project",
       "path": "../ShoppingCart_Models/ShoppingCart_Models.csproj",
@@ -10633,6 +10656,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.17",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
+      "ShoppingCart_DataAccess >= 1.0.0",
       "ShoppingCart_Models >= 1.0.0",
       "ShoppingCart_Utility >= 1.0.0"
     ]
@@ -10664,6 +10688,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "D:\\Projects\\Dotnet-Mastery-Projects\\mvc-shopping-cart-project\\ShoppingCart\\ShoppingCart_DataAccess\\ShoppingCart_DataAccess.csproj": {
+              "projectPath": "D:\\Projects\\Dotnet-Mastery-Projects\\mvc-shopping-cart-project\\ShoppingCart\\ShoppingCart_DataAccess\\ShoppingCart_DataAccess.csproj"
+            },
             "D:\\Projects\\Dotnet-Mastery-Projects\\mvc-shopping-cart-project\\ShoppingCart\\ShoppingCart_Models\\ShoppingCart_Models.csproj": {
               "projectPath": "D:\\Projects\\Dotnet-Mastery-Projects\\mvc-shopping-cart-project\\ShoppingCart\\ShoppingCart_Models\\ShoppingCart_Models.csproj"
             },

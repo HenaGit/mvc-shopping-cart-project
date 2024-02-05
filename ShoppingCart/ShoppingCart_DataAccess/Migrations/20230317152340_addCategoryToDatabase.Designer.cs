@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ShoppingCart.Data;
+using ShoppingCart_DataAccess;
 
-namespace ShoppingCart.Migrations
+namespace ShoppingCart_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230317205953_AddApplicationTypeToDatabase")]
-    partial class AddApplicationTypeToDatabase
+    [Migration("20230317152340_addCategoryToDatabase")]
+    partial class addCategoryToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,21 +19,6 @@ namespace ShoppingCart.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
-
-            modelBuilder.Entity("ShoppingCart_Models.ApplicationType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ApplicationType");
-                });
 
             modelBuilder.Entity("ShoppingCart_Models.Category", b =>
                 {

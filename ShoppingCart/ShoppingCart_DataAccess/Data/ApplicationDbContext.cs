@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShoppingCart.Data
+namespace ShoppingCart_DataAccess
 {
     public class ApplicationDbContext: IdentityDbContext
     {
