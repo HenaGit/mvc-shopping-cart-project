@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ShoppingCart.Utility
+namespace ShoppingCart_Utility
 {
     public static class SessionExtensions
     {

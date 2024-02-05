@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using ShoppingCart.Data;
 using ShoppingCart.Models;
 using ShoppingCart.Models.ViewModels;
-using ShoppingCart.Utility;
+using ShoppingCart_Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
