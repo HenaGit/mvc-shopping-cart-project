@@ -20,7 +20,7 @@ namespace ShoppingCart.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("ShoppingCart.Models.ApplicationType", b =>
+            modelBuilder.Entity("ShoppingCart_Models.ApplicationType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,7 @@ namespace ShoppingCart.Migrations
                     b.ToTable("ApplicationType");
                 });
 
-            modelBuilder.Entity("ShoppingCart.Models.Category", b =>
+            modelBuilder.Entity("ShoppingCart_Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

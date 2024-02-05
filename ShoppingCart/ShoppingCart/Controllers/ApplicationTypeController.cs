@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCart.Data;
-using ShoppingCart.Models;
+using ShoppingCart_Models;
 using ShoppingCart_Utility;
 
 namespace ShoppingCart.Controllers

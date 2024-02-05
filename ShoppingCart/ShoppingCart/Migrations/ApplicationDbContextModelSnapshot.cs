@@ -221,7 +221,7 @@ namespace ShoppingCart.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ShoppingCart.Models.ApplicationType", b =>
+            modelBuilder.Entity("ShoppingCart_Models.ApplicationType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -237,7 +237,7 @@ namespace ShoppingCart.Migrations
                     b.ToTable("ApplicationType");
                 });
 
-            modelBuilder.Entity("ShoppingCart.Models.Category", b =>
+            modelBuilder.Entity("ShoppingCart_Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -256,7 +256,7 @@ namespace ShoppingCart.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("ShoppingCart.Models.Product", b =>
+            modelBuilder.Entity("ShoppingCart_Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -294,7 +294,7 @@ namespace ShoppingCart.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("ShoppingCart.Models.ApplicationUser", b =>
+            modelBuilder.Entity("ShoppingCart_Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -355,15 +355,15 @@ namespace ShoppingCart.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ShoppingCart.Models.Product", b =>
+            modelBuilder.Entity("ShoppingCart_Models.Product", b =>
                 {
-                    b.HasOne("ShoppingCart.Models.ApplicationType", "ApplicationType")
+                    b.HasOne("ShoppingCart_Models.ApplicationType", "ApplicationType")
                         .WithMany()
                         .HasForeignKey("ApplicationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShoppingCart.Models.Category", "Category")
+                    b.HasOne("ShoppingCart_Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

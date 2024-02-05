@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCart.Data;
-using ShoppingCart.Models;
-using ShoppingCart.Models.ViewModels;
+using ShoppingCart_Models;
+using ShoppingCart_Models.ViewModels;
 using ShoppingCart_Utility;
 
 namespace ShoppingCart.Controllers

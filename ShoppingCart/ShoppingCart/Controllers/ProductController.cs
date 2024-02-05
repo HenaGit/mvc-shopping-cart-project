@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShoppingCart.Data;
-using ShoppingCart.Models;
-using ShoppingCart.Models.ViewModels;
+using ShoppingCart_Models;
+using ShoppingCart_Models.ViewModels;
 using ShoppingCart_Utility;
 
 namespace ShoppingCart.Controllers
