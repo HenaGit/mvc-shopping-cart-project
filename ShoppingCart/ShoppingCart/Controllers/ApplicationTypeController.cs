@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCart_DataAccess;
+using ShoppingCart_DataAccess.Repository.IRepository;
 using ShoppingCart_Models;
 using ShoppingCart_Utility;
 
@@ -13,16 +14,16 @@ namespace ShoppingCart.Controllers
     [Authorize(Roles = WC.AdminRole)]
     public class ApplicationTypeController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IApplicationTypeRepository _appTypeRepo;
 
-        public ApplicationTypeController(ApplicationDbContext db)
+        public ApplicationTypeController(IApplicationTypeRepository appTypeRepo)
         {
-            _db = db;
+            _appTypeRepo = appTypeRepo;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<ApplicationType> applicationTypeList = _db.ApplicationType;
+            IEnumerable<ApplicationType> applicationTypeList = _appTypeRepo.GetAll();
             return View(applicationTypeList);
         }
 
@@ -37,8 +38,8 @@ namespace ShoppingCart.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ApplicationType applicationType)
         {
-            _db.ApplicationType.Add(applicationType);
-            _db.SaveChanges();
+            _appTypeRepo.Add(applicationType);
+            _appTypeRepo.Save();
             return RedirectToAction("Index");
         }
 
@@ -49,7 +50,7 @@ namespace ShoppingCart.Controllers
             {
                 return NotFound();
             }
-            var applicationType = _db.ApplicationType.Find(id);
+            var applicationType = _appTypeRepo.Find(id.GetValueOrDefault());
             if (applicationType == null)
             {
                 return NotFound();
@@ -65,8 +66,8 @@ namespace ShoppingCart.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.ApplicationType.Update(applicationType);
-                _db.SaveChanges();
+                _appTypeRepo.Update(applicationType);
+                _appTypeRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(applicationType);
@@ -79,7 +80,7 @@ namespace ShoppingCart.Controllers
             {
                 return NotFound();
             }
-            var applicationType = _db.ApplicationType.Find(id);
+            var applicationType = _appTypeRepo.Find(id.GetValueOrDefault());
             if (applicationType == null)
             {
                 return NotFound();
@@ -93,13 +94,13 @@ namespace ShoppingCart.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var applicationType = _db.ApplicationType.Find(id);
+            var applicationType = _appTypeRepo.Find(id.GetValueOrDefault());
             if (applicationType == null)
             {
                 return NotFound();
             }
-            _db.ApplicationType.Remove(applicationType);
-            _db.SaveChanges();
+            _appTypeRepo.Remove(applicationType);
+            _appTypeRepo.Save();
             return RedirectToAction("Index");
         }
     }
