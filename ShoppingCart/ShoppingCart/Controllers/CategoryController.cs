@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCart_DataAccess;
+using ShoppingCart_DataAccess.Repository.IRepository;
 using ShoppingCart_Models;
 using ShoppingCart_Utility;
 
@@ -13,16 +14,16 @@ namespace ShoppingCart.Controllers
     [Authorize(Roles = WC.AdminRole)]
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ICategoryRepository _catRepo;
 
-        public CategoryController(ApplicationDbContext db)
+        public CategoryController(ICategoryRepository catRepo)
         {
-            _db = db;
+            _catRepo = catRepo;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Category> catList = _db.Category;
+            IEnumerable<Category> catList = _catRepo.GetAll();
             return View(catList);
         }
 
@@ -39,8 +40,8 @@ namespace ShoppingCart.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Category.Add(category);
-                _db.SaveChanges();
+                _catRepo.Add(category);
+                _catRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -53,7 +54,7 @@ namespace ShoppingCart.Controllers
             {
                 return NotFound();
             }
-            var category = _db.Category.Find(id);
+            var category = _catRepo.Find(id.GetValueOrDefault());
             if (category == null)
             {
                 return NotFound();
@@ -69,8 +70,8 @@ namespace ShoppingCart.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Category.Update(category);
-                _db.SaveChanges();
+                _catRepo.Update(category);
+                _catRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -83,7 +84,7 @@ namespace ShoppingCart.Controllers
             {
                 return NotFound();
             }
-            var category = _db.Category.Find(id);
+            var category = _catRepo.Find(id.GetValueOrDefault());
             if (category == null)
             {
                 return NotFound();
@@ -97,13 +98,13 @@ namespace ShoppingCart.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var category = _db.Category.Find(id);
+            var category = _catRepo.Find(id.GetValueOrDefault());
             if (category == null)
             {
                 return NotFound();
             }
-            _db.Category.Remove(category);
-            _db.SaveChanges();
+            _catRepo.Remove(category);
+            _catRepo.Save();
             return RedirectToAction("Index");
         }
     }

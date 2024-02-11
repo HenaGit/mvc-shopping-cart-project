@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShoppingCart_DataAccess;
+using ShoppingCart_DataAccess.Repository.IRepository;
+using ShoppingCart_DataAccess.Repository;
 using ShoppingCart_Utility;
 
 namespace ShoppingCart
@@ -45,6 +47,7 @@ namespace ShoppingCart
                 Options.Cookie.HttpOnly = true;
                 Options.Cookie.IsEssential = true;
             });
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddControllersWithViews();
         }
 
