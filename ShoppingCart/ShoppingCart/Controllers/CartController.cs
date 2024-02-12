@@ -106,36 +106,36 @@ namespace ShoppingCart.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            var PathToTemplate =
-                _webHostEnvironment.WebRootPath
-                + Path.DirectorySeparatorChar.ToString()
-                + "templates"
-                + Path.DirectorySeparatorChar.ToString()
-                + "Inquiry.html";
+            //var PathToTemplate =
+            //    _webHostEnvironment.WebRootPath
+            //    + Path.DirectorySeparatorChar.ToString()
+            //    + "templates"
+            //    + Path.DirectorySeparatorChar.ToString()
+            //    + "Inquiry.html";
 
-            var subject = "New Inquiry";
-            string HtmlBody = "";
-            using (StreamReader sr = System.IO.File.OpenText(PathToTemplate))
-            {
-                HtmlBody = sr.ReadToEnd();
-            }
+            //var subject = "New Inquiry";
+            //string HtmlBody = "";
+            //using (StreamReader sr = System.IO.File.OpenText(PathToTemplate))
+            //{
+            //    HtmlBody = sr.ReadToEnd();
+            //}
 
-            StringBuilder productListSB = new StringBuilder();
-            foreach (var prod in ProductUserVM.ProductList)
-            {
-                productListSB.Append(
-                    $" - Name: {prod.Name} <span style='font-size:14px;'> (ID: {prod.Id})</span><br />"
-                );
-            }
+            //StringBuilder productListSB = new StringBuilder();
+            //foreach (var prod in ProductUserVM.ProductList)
+            //{
+            //    productListSB.Append(
+            //        $" - Name: {prod.Name} <span style='font-size:14px;'> (ID: {prod.Id})</span><br />"
+            //    );
+            //}
 
-            string messageBody = string.Format(
-                HtmlBody,
-                ProductUserVM.ApplicationUser.FullName,
-                ProductUserVM.ApplicationUser.Email,
-                ProductUserVM.ApplicationUser.PhoneNumber,
-                productListSB.ToString()
-            );
-            await _emailSender.SendEmailAsync(WC.EmailAdmin, subject, messageBody);
+            //string messageBody = string.Format(
+            //    HtmlBody,
+            //    ProductUserVM.ApplicationUser.FullName,
+            //    ProductUserVM.ApplicationUser.Email,
+            //    ProductUserVM.ApplicationUser.PhoneNumber,
+            //    productListSB.ToString()
+            //);
+            //await _emailSender.SendEmailAsync(WC.EmailAdmin, subject, messageBody);
             InquiryHeader inquiryHeader = new InquiryHeader()
             {
                 ApplicationUserId = claim.Value,
