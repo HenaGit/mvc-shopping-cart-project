@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingCart_DataAccess.Repository.IRepository;
+using ShoppingCart_Models.ViewModels;
 
 namespace ShoppingCart.Controllers
 {
@@ -7,7 +8,8 @@ namespace ShoppingCart.Controllers
     {
         private readonly IInquiryHeaderRepository _inqHRepo;
         private readonly IInquiryDetailRepository _inqDRepo;
-
+        [BindProperty]
+        public InquiryVM InquiryVM { get; set; }
         public InquiryController(IInquiryDetailRepository inqDRepo,
             IInquiryHeaderRepository inqHRepo)
         {
@@ -17,6 +19,15 @@ namespace ShoppingCart.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult Details(int id)
+        {
+            InquiryVM = new InquiryVM()
+            {
+                InquiryHeader = _inqHRepo.FirstOrDefault(u => u.Id == id),
+                InquiryDetail = _inqDRepo.GetAll(u => u.InquiryHeaderId == id, includeProperties: "Product")
+            };
+            return View(InquiryVM);
         }
         #region API CALLS
         [HttpGet]
