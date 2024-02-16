@@ -73,8 +73,15 @@ namespace ShoppingCart.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Index")]
-        public IActionResult IndexPost()
+        public IActionResult IndexPost(IEnumerable<Product> ProdList)
         {
+            List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
+            foreach (Product prod in ProdList)
+            {
+                shoppingCartList.Add(new ShoppingCartModel { ProductId = prod.Id, SqFt = prod.TempSqFt });
+            }
+
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
             return RedirectToAction(nameof(Summary));
         }
 
