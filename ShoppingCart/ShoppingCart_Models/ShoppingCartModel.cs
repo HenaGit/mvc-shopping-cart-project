@@ -8,5 +8,6 @@ namespace ShoppingCart_Models
     public class ShoppingCartModel
     {
         public int ProductId { get; set; }
+        public int SqFt { get; set; }
     }
 }
