@@ -195,5 +195,17 @@ namespace ShoppingCart.Controllers
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCart()
+        {
+            List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
+            foreach (Product prod in ProductUserVM.ProductList)
+            {
+                shoppingCartList.Add(new ShoppingCartModel { ProductId = prod.Id, SqFt = prod.TempSqFt });
+            }
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
