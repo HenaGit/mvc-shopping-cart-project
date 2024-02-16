@@ -197,10 +197,10 @@ namespace ShoppingCart.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateCart()
+        public IActionResult UpdateCart(IEnumerable<Product> ProdList)
         {
             List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
-            foreach (Product prod in ProductUserVM.ProductList)
+            foreach (Product prod in ProdList)
             {
                 shoppingCartList.Add(new ShoppingCartModel { ProductId = prod.Id, SqFt = prod.TempSqFt });
             }
