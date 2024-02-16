@@ -71,6 +71,7 @@ namespace ShoppingCart.Controllers
             }
             shoppingCartList.Add(new ShoppingCartModel { ProductId = id });
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Item added to cart successfully";
             return RedirectToAction(nameof(Index));
         }
         public IActionResult RemoveFromCart(int id)
@@ -89,6 +90,7 @@ namespace ShoppingCart.Controllers
             }
 
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Item removed from cart successfully";
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Privacy()

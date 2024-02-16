@@ -40,6 +40,7 @@ namespace ShoppingCart.Controllers
         {
             _appTypeRepo.Add(applicationType);
             _appTypeRepo.Save();
+            TempData[WC.Success] = "Application Type created successfully!";
             return RedirectToAction("Index");
         }
 
@@ -68,8 +69,10 @@ namespace ShoppingCart.Controllers
             {
                 _appTypeRepo.Update(applicationType);
                 _appTypeRepo.Save();
+                TempData[WC.Success] = "Application Type updated successfully!";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Error] = "Error while updating Application Type!";
             return View(applicationType);
         }
 
@@ -101,6 +104,7 @@ namespace ShoppingCart.Controllers
             }
             _appTypeRepo.Remove(applicationType);
             _appTypeRepo.Save();
+            TempData[WC.Success] = "Application Type deleted successfully!";
             return RedirectToAction("Index");
         }
     }

@@ -29,28 +29,13 @@ namespace ShoppingCart.Controllers
 
         public IActionResult Index()
         {
-            //IEnumerable<Product> objList = _db.Product;
             IEnumerable<Product> productjList = _prodRepo.GetAll(includeProperties: "Category,ApplicationType");
-            //foreach (var obj in objList)
-            //{
-            //    obj.Category = _db.Category.FirstOrDefault(u => u.Id == obj.CategoryId);
-            //    //obj.ApplicationType = _db.ApplicationType.FirstOrDefault(u => u.Id == obj.ApplicationTypeId);
-            //};
-
             return View(productjList);
         }
 
         //GET -UPSERT
         public IActionResult Upsert(int? id)
         {
-            //IEnumerable<SelectListItem> CategoryDropDown = _db.Category.Select(i => new SelectListItem
-            //{
-            //    Text = i.Name,
-            //    Value = i.Id.ToString()
-            //});
-            //ViewBag.CategoryDropDown = CategoryDropDown;
-            //ViewData["CategoryDropDown"] = CategoryDropDown;
-            //Product product = new Product();
             ProductVM productVM = new ProductVM()
             {
                 Product = new Product(),
@@ -141,6 +126,7 @@ namespace ShoppingCart.Controllers
                 }
 
                 _prodRepo.Save();
+                TempData[WC.Success] = "Action completed successfully";
                 return RedirectToAction("Index");
             }
             productVM.CategorySelectList = _prodRepo.GetAllDropdownList(WC.CategoryName);
@@ -185,6 +171,7 @@ namespace ShoppingCart.Controllers
 
             _prodRepo.Remove(product);
             _prodRepo.Save();
+            TempData[WC.Success] = "Action completed successfully";
             return RedirectToAction("Index");
         }
     }

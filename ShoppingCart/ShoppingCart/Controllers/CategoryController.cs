@@ -42,8 +42,10 @@ namespace ShoppingCart.Controllers
             {
                 _catRepo.Add(category);
                 _catRepo.Save();
+                TempData[WC.Success] = "Category created successfully!";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Error] = "Error while creating Category!";
             return View(category);
         }
 
@@ -72,8 +74,10 @@ namespace ShoppingCart.Controllers
             {
                 _catRepo.Update(category);
                 _catRepo.Save();
+                TempData[WC.Success] = "Category updated successfully!";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Success] = "Error while updating Category!";
             return View(category);
         }
 
@@ -105,6 +109,7 @@ namespace ShoppingCart.Controllers
             }
             _catRepo.Remove(category);
             _catRepo.Save();
+            TempData[WC.Success] = "Category deleted successfully!";
             return RedirectToAction("Index");
         }
     }
