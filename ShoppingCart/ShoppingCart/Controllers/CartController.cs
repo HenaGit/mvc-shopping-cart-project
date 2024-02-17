@@ -258,10 +258,11 @@ namespace ShoppingCart.Controllers
             return RedirectToAction(nameof(InquiryConfirmation));
         }
 
-        public IActionResult InquiryConfirmation()
+        public IActionResult InquiryConfirmation(int id = 0)
         {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == id);
             HttpContext.Session.Clear();
-            return View();
+            return View(orderHeader);
         }
 
         public IActionResult Remove(int id)
