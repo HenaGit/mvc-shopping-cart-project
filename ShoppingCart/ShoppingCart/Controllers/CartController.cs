@@ -87,9 +87,6 @@ namespace ShoppingCart.Controllers
 
         public IActionResult Summary()
         {
-            //var claimsIdentity = (ClaimsIdentity)User.Identity;
-            //var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            //var userId = User.FindFirstValue(ClaimTypes.Name);
             ApplicationUser applicationUser;
 
             if (User.IsInRole(WC.AdminRole))
@@ -114,8 +111,6 @@ namespace ShoppingCart.Controllers
             {
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                //var userId = User.FindFirstValue(ClaimTypes.Name);
-
                 applicationUser = _userRepo.FirstOrDefault(u => u.Id == claim.Value);
             }
             List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
@@ -135,8 +130,14 @@ namespace ShoppingCart.Controllers
             ProductUserVM = new ProductUserVM()
             {
                 ApplicationUser = applicationUser,
-                ProductList = prodList.ToList()
             };
+
+            foreach (var cartObj in shoppingCartList)
+            {
+                Product prodTemp = _prodRepo.FirstOrDefault(u => u.Id == cartObj.ProductId);
+                prodTemp.TempSqFt = cartObj.SqFt;
+                ProductUserVM.ProductList.Add(prodTemp);
+            }
 
             return View(ProductUserVM);
         }
