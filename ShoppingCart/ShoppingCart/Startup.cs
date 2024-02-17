@@ -15,6 +15,7 @@ using ShoppingCart_DataAccess;
 using ShoppingCart_DataAccess.Repository.IRepository;
 using ShoppingCart_DataAccess.Repository;
 using ShoppingCart_Utility;
+using ShoppingCart_Utility.BrainTree;
 
 namespace ShoppingCart
 {
@@ -47,6 +48,8 @@ namespace ShoppingCart
                 Options.Cookie.HttpOnly = true;
                 Options.Cookie.IsEssential = true;
             });
+            services.Configure<BrainTreeSettings>(Configuration.GetSection("BrainTree"));
+            services.AddSingleton<IBrainTreeGate, BrainTreeGate>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();

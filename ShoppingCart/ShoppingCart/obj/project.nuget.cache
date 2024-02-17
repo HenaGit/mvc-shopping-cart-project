@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "3FS5blHrf3yqbnXN9P4je5gsp486vQVHv/3YA5AWqZhBjZ+0lkLKYFv2tCmGjC6dOyG5qnnGeQNLWjxl8FmgRA==",
+  "dgSpecHash": "uGOG1clMe4yWi1o9pgD+P28SUokvyJhSwr3176YMWha8PSbwVnjrHTXJcsKmuA+wuhpu9mOOr/U1trZk4f5LnA==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Dotnet-Mastery-Projects\\mvc-shopping-cart-project\\ShoppingCart\\ShoppingCart\\ShoppingCart.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\henig\\.nuget\\packages\\braintree\\4.17.0\\braintree.4.17.0.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\mailjet.api\\1.2.2\\mailjet.api.1.2.2.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
@@ -205,7 +206,9 @@
     "C:\\Users\\henig\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\henig\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\henig\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\henig\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
+    "C:\\Users\\henig\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
