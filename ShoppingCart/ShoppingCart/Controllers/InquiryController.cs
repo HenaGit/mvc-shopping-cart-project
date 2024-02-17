@@ -45,7 +45,8 @@ namespace ShoppingCart.Controllers
             {
                 ShoppingCartModel shoppingCart = new ShoppingCartModel()
                 {
-                    ProductId = detail.ProductId
+                    ProductId = detail.ProductId,
+                    SqFt = 1
                 };
                 shoppingCartList.Add(shoppingCart);
             }

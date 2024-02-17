@@ -87,10 +87,37 @@ namespace ShoppingCart.Controllers
 
         public IActionResult Summary()
         {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            //var claimsIdentity = (ClaimsIdentity)User.Identity;
+            //var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             //var userId = User.FindFirstValue(ClaimTypes.Name);
+            ApplicationUser applicationUser;
 
+            if (User.IsInRole(WC.AdminRole))
+            {
+                if (HttpContext.Session.Get<int>(WC.SessionInquiryId) != 0)
+                {
+                    //cart has been loaded using an inquiry
+                    InquiryHeader inquiryHeader = _inqHRepo.FirstOrDefault(u => u.Id == HttpContext.Session.Get<int>(WC.SessionInquiryId));
+                    applicationUser = new ApplicationUser()
+                    {
+                        Email = inquiryHeader.Email,
+                        FullName = inquiryHeader.FullName,
+                        PhoneNumber = inquiryHeader.PhoneNumber
+                    };
+                }
+                else
+                {
+                    applicationUser = new ApplicationUser();
+                }
+            }
+            else
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                //var userId = User.FindFirstValue(ClaimTypes.Name);
+
+                applicationUser = _userRepo.FirstOrDefault(u => u.Id == claim.Value);
+            }
             List<ShoppingCartModel> shoppingCartList = new List<ShoppingCartModel>();
             if (
                 HttpContext.Session.Get<IEnumerable<ShoppingCartModel>>(WC.SessionCart) != null
@@ -107,7 +134,7 @@ namespace ShoppingCart.Controllers
 
             ProductUserVM = new ProductUserVM()
             {
-                ApplicationUser = _userRepo.FirstOrDefault(u => u.Id == claim.Value),
+                ApplicationUser = applicationUser,
                 ProductList = prodList.ToList()
             };
 
@@ -169,7 +196,7 @@ namespace ShoppingCart.Controllers
                 InquiryDetail inquiryDetail = new InquiryDetail()
                 {
                     InquiryHeaderId = inquiryHeader.Id,
-                    ProductId = prod.Id
+                    ProductId = prod.Id,
                 };
                 _inqDRepo.Add(inquiryDetail);
 
