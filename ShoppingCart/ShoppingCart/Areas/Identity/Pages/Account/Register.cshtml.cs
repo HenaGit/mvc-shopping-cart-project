@@ -73,8 +73,9 @@ namespace ShoppingCart.Areas.Identity.Pages.Account
                 ErrorMessage = "The password and confirmation password do not match."
             )]
             public string ConfirmPassword { get; set; }
-
+            [Required]
             public string FullName { get; set; }
+            [Required]
             public string PhoneNumber { get; set; }
         }
 
