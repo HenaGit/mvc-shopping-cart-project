@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uGOG1clMe4yWi1o9pgD+P28SUokvyJhSwr3176YMWha8PSbwVnjrHTXJcsKmuA+wuhpu9mOOr/U1trZk4f5LnA==",
+  "dgSpecHash": "EIF7kqxzxjhYg6pSHiZgQ09NpbsI/FCxxyKc7oJQeoZtK4NzsiMwShhk2dz8SwgoAV/d67PaYuNfC8H34PFcSg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Dotnet-Mastery-Projects\\mvc-shopping-cart-project\\ShoppingCart\\ShoppingCart\\ShoppingCart.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\henig\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\henig\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\5.0.17\\microsoft.aspnetcore.authentication.facebook.5.0.17.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\henig\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.17\\microsoft.aspnetcore.cryptography.internal.5.0.17.nupkg.sha512",

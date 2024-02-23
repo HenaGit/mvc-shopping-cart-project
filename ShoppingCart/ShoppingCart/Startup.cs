@@ -58,6 +58,12 @@ namespace ShoppingCart
             services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+
+            services.AddAuthentication().AddFacebook(Options =>
+            {
+                Options.AppId = "1602045810544112";
+                Options.AppSecret = "97caa84950f04bc78a407446454722ac";
+            });
             services.AddControllersWithViews();
         }
 
