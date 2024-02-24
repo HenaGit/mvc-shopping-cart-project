@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingCart_DataAccess.Repository.IRepository;
+using ShoppingCart_Models;
 using ShoppingCart_Models.ViewModels;
 using ShoppingCart_Utility;
 using ShoppingCart_Utility.BrainTree;
+using System;
 using System.Linq;
 
 namespace ShoppingCart.Controllers
@@ -28,6 +30,7 @@ namespace ShoppingCart.Controllers
                 OrderHList = _orderHRepo.GetAll(),
                 StatusList = WC.listStatus.ToList().Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
                 {
+                   Text=i,
                    Value = i
                 })
             };
@@ -56,8 +59,33 @@ namespace ShoppingCart.Controllers
                 OrderHeader = _orderHRepo.FirstOrDefault(u => u.Id == id),
                 OrderDetail = _orderDRepo.GetAll(o => o.OrderHeaderId == id, includeProperties: "Product")
             };
-
             return View(OrderVM);
+        }
+        [HttpPost]
+        public IActionResult StartProcessing()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            orderHeader.OrderStatus = WC.StatusInProcess;
+            _orderHRepo.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult ShipOrder()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            orderHeader.OrderStatus = WC.StatusShipped;
+            orderHeader.ShippingDate = DateTime.Now;
+            _orderHRepo.Save();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public IActionResult CancelOrder()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            orderHeader.OrderStatus = WC.StatusInProcess;
+            _orderHRepo.Save();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
