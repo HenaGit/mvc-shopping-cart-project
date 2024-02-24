@@ -1,4 +1,5 @@
 ﻿using Braintree;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCart_DataAccess.Repository.IRepository;
 using ShoppingCart_Models;
@@ -10,6 +11,7 @@ using System.Linq;
 
 namespace ShoppingCart.Controllers
 {
+    [Authorize(Roles = WC.AdminRole)]
     public class OrderController : Controller
     {
         private readonly IOrderHeaderRepository _orderHRepo;
