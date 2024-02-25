@@ -2043,11 +2043,11 @@
           }
         }
       },
-      "Syncfusion.EJ2.AspNet.Core/18.1.0.59": {
+      "Syncfusion.EJ2.AspNet.Core/18.2.0.44": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "[11.0.2, 13.0.0)",
-          "Syncfusion.Licensing": "18.1.0.59"
+          "Syncfusion.Licensing": "18.2.0.44"
         },
         "compile": {
           "lib/netstandard2.1/Syncfusion.EJ2.dll": {}
@@ -2056,13 +2056,13 @@
           "lib/netstandard2.1/Syncfusion.EJ2.dll": {}
         }
       },
-      "Syncfusion.Licensing/18.1.0.59": {
+      "Syncfusion.Licensing/18.2.0.44": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.0/Syncfusion.Licensing.dll": {}
+          "lib/netcoreapp5.0/Syncfusion.Licensing.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/Syncfusion.Licensing.dll": {}
+          "lib/netcoreapp5.0/Syncfusion.Licensing.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -6396,10 +6396,10 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-    "Syncfusion.EJ2.AspNet.Core/18.1.0.59": {
-      "sha512": "vx4izwAg5Y1baOOmD0NAqJu4nRvYlFPZmKBgGV3nFnvNwQKm6c5VTAgAStlClT8C2x4SuK2x46MTnXwe56yYJA==",
+    "Syncfusion.EJ2.AspNet.Core/18.2.0.44": {
+      "sha512": "VYLCgFcLJ9vSEC1Y39LLpOoZCSBArfJ8iBfvkXBnpHtUnRmT030kD2IPv46+4Pbtntmtjxn0XUmWQoGp3eOizA==",
       "type": "package",
-      "path": "syncfusion.ej2.aspnet.core/18.1.0.59",
+      "path": "syncfusion.ej2.aspnet.core/18.2.0.44",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6407,14 +6407,14 @@
         "lib/netstandard1.6/Syncfusion.EJ2.dll",
         "lib/netstandard2.0/Syncfusion.EJ2.dll",
         "lib/netstandard2.1/Syncfusion.EJ2.dll",
-        "syncfusion.ej2.aspnet.core.18.1.0.59.nupkg.sha512",
+        "syncfusion.ej2.aspnet.core.18.2.0.44.nupkg.sha512",
         "syncfusion.ej2.aspnet.core.nuspec"
       ]
     },
-    "Syncfusion.Licensing/18.1.0.59": {
-      "sha512": "2mil7zRAoq+Lkd7hdbooUeA9gNJxwUGajfVUVWO38FjirCtIy04LLCeepbM+DAC083JVFgG0eHyB9WLd2MwiqA==",
+    "Syncfusion.Licensing/18.2.0.44": {
+      "sha512": "cbP6Dq/syAKpB0+fS4DAqVG7xsoFJ2DAHW5U/lDFBuHV/i/C+zLXzG8jVBgnPpJVZ/Q1sfcqscVKflLH/lGoRw==",
       "type": "package",
-      "path": "syncfusion.licensing/18.1.0.59",
+      "path": "syncfusion.licensing/18.2.0.44",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6427,14 +6427,15 @@
         "lib/net45/Syncfusion.Licensing.dll",
         "lib/net451/Syncfusion.Licensing.dll",
         "lib/net46/Syncfusion.Licensing.dll",
-        "lib/netcoreapp3.0/Syncfusion.Licensing.dll",
+        "lib/netcoreapp3.1/Syncfusion.Licensing.dll",
+        "lib/netcoreapp5.0/Syncfusion.Licensing.dll",
         "lib/netstandard1.0/Syncfusion.Licensing.dll",
         "lib/netstandard1.2/Syncfusion.Licensing.dll",
         "lib/netstandard1.4/Syncfusion.Licensing.dll",
         "lib/netstandard2.0/Syncfusion.Licensing.dll",
         "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
         "lib/uap10.0/Syncfusion.Licensing.dll",
-        "syncfusion.licensing.18.1.0.59.nupkg.sha512",
+        "syncfusion.licensing.18.2.0.44.nupkg.sha512",
         "syncfusion.licensing.nuspec"
       ]
     },
@@ -10905,7 +10906,7 @@
       "ShoppingCart_DataAccess >= 1.0.0",
       "ShoppingCart_Models >= 1.0.0",
       "ShoppingCart_Utility >= 1.0.0",
-      "Syncfusion.EJ2.AspNet.Core >= 18.1.0.59"
+      "Syncfusion.EJ2.AspNet.Core >= 18.2.0.44"
     ]
   },
   "packageFolders": {
@@ -11008,7 +11009,7 @@
           },
           "Syncfusion.EJ2.AspNet.Core": {
             "target": "Package",
-            "version": "[18.1.0.59, )"
+            "version": "[18.2.0.44, )"
           }
         },
         "imports": [

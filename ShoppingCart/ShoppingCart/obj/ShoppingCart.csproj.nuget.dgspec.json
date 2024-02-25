@@ -101,7 +101,7 @@
             },
             "Syncfusion.EJ2.AspNet.Core": {
               "target": "Package",
-              "version": "[18.1.0.59, )"
+              "version": "[18.2.0.44, )"
             }
           },
           "imports": [
